@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityMain2Binding
+import java.io.IOException
 
 
 class MainActivity2 : AppCompatActivity() {
@@ -42,6 +43,26 @@ class MainActivity2 : AppCompatActivity() {
             nuevaVista2.putExtra("RAZA", raza)
             nuevaVista2.putExtra("CLASE", clase)
             startActivity(nuevaVista2)
+        }
+
+        binding.buttonStart.setOnClickListener{
+            musica.start()
+        }
+
+        binding.buttonPause.setOnClickListener{
+            musica.pause()
+        }
+
+        binding.buttonStop.setOnClickListener{
+            musica.stop()
+
+            try {
+                musica.stop()
+                musica.prepare()
+                musica.seekTo(0)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityMain3Binding
+import java.io.IOException
 import java.util.Random
 
 class MainActivity3 : AppCompatActivity() {
@@ -53,6 +54,26 @@ class MainActivity3 : AppCompatActivity() {
         binding.button10.setOnClickListener{
             val nuevaVista4 = Intent(this, MainActivity4::class.java)
             startActivity(nuevaVista4)
+        }
+
+        binding.buttonStart.setOnClickListener{
+            musica.start()
+        }
+
+        binding.buttonPause.setOnClickListener{
+            musica.pause()
+        }
+
+        binding.buttonStop.setOnClickListener{
+            musica.stop()
+
+            try {
+                musica.stop()
+                musica.prepare()
+                musica.seekTo(0)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
 
     }

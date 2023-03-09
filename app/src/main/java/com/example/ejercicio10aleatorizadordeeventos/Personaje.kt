@@ -1,8 +1,9 @@
 package com.example.ejercicio10aleatorizadordeeventos
 
+import android.media.MediaPlayer
 import android.widget.Toast
 import java.io.Serializable
-
+var musica = MediaPlayer()
 class Personaje():Serializable {
 
     var nombre = ""
@@ -105,7 +106,7 @@ class Personaje():Serializable {
         return "El jugador $nombre lleva $partidasJugadas partidas jugadas en $tiempoJugado horas jugadas, con un resultado de $kills bajas por $deaths muertes. Por tanto el K/D es de ${getKD()}"
     }
 
-    class Mochila{
+    class Mochila: Serializable{
         var perfil="ladron"
         var limit = 100
         var peso_mochila=0
@@ -134,7 +135,7 @@ class Personaje():Serializable {
 
 }
 
-class cifrado {
+class cifrado: Serializable {
     fun main(){
         var texto ="pamplona".uppercase()
 
@@ -193,7 +194,7 @@ class cifrado {
     }
 
 }
-class Objeto {
+class Objeto: Serializable {
 
     var nombre = ""
     var peso = 0
@@ -210,3 +211,4 @@ class Objeto {
     }
 
 }
+

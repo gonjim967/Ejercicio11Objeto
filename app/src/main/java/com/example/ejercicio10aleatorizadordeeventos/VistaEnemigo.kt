@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityVistaCiudadBinding
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityVistaEnemigoBinding
+import java.io.IOException
 
 class VistaEnemigo : AppCompatActivity() {
     final lateinit var binding: ActivityVistaEnemigoBinding
@@ -23,6 +24,26 @@ class VistaEnemigo : AppCompatActivity() {
         binding.button8.setOnClickListener{
             val vueltaDado = Intent(this, MainActivity4::class.java)
             startActivity(vueltaDado)
+        }
+
+        binding.buttonStart.setOnClickListener{
+            musica.start()
+        }
+
+        binding.buttonPause.setOnClickListener{
+            musica.pause()
+        }
+
+        binding.buttonStop.setOnClickListener{
+            musica.stop()
+
+            try {
+                musica.stop()
+                musica.prepare()
+                musica.seekTo(0)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
     }
 }

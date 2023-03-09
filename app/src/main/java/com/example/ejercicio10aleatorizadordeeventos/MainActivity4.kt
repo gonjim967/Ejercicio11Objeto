@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import kotlin.random.Random
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityMain4Binding
+import java.io.IOException
 
 class MainActivity4 : AppCompatActivity() {
     final lateinit var binding: ActivityMain4Binding
@@ -42,6 +43,26 @@ class MainActivity4 : AppCompatActivity() {
                 startActivity(vistaEnemigo)
             }
             Toast.makeText(this, encontrar, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.buttonStart.setOnClickListener{
+            musica.start()
+        }
+
+        binding.buttonPause.setOnClickListener{
+            musica.pause()
+        }
+
+        binding.buttonStop.setOnClickListener{
+            musica.stop()
+
+            try {
+                musica.stop()
+                musica.prepare()
+                musica.seekTo(0)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
 
     }

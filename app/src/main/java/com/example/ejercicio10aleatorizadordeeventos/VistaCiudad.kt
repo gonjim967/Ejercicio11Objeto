@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityObjetoBinding
 import com.example.ejercicio10aleatorizadordeeventos.databinding.ActivityVistaCiudadBinding
+import java.io.IOException
 
 class VistaCiudad : AppCompatActivity() {
     final lateinit var binding: ActivityVistaCiudadBinding
@@ -24,6 +25,26 @@ class VistaCiudad : AppCompatActivity() {
         binding.button8.setOnClickListener{
             val vueltaAlDado = Intent(this, MainActivity4::class.java)
             startActivity(vueltaAlDado)
+        }
+
+        binding.buttonStart.setOnClickListener{
+            musica.start()
+        }
+
+        binding.buttonPause.setOnClickListener{
+            musica.pause()
+        }
+
+        binding.buttonStop.setOnClickListener{
+            musica.stop()
+
+            try {
+                musica.stop()
+                musica.prepare()
+                musica.seekTo(0)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
         }
     }
 }
