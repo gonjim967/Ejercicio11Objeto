@@ -7,6 +7,7 @@ var musica = MediaPlayer()
 class Personaje():Serializable {
 
     var nombre = ""
+    var mochila =Mochila()
     var partidasJugadas = 0
     var tiempoJugado = 0
     var kills = 0
@@ -106,34 +107,28 @@ class Personaje():Serializable {
         return "El jugador $nombre lleva $partidasJugadas partidas jugadas en $tiempoJugado horas jugadas, con un resultado de $kills bajas por $deaths muertes. Por tanto el K/D es de ${getKD()}"
     }
 
-    class Mochila: Serializable{
+    class Mochila{
         var perfil="ladron"
-        var limit = 100
+        var limit = 10
         var peso_mochila=0
         var valor_mochila=0
         var cant_obj=0
-        var objetos = mutableListOf<Objeto>()
+        var objetos= mutableListOf<Objeto>()
         fun coger(vararg objetos: Objeto){
             var obj_ordenados = objetos
-            obj_ordenados.sortByDescending { it.relacion }
+                    obj_ordenados.sortByDescending { it.relacion }
             for (objeto in obj_ordenados) {
                 print("${objeto.peso},${objeto.valor},${objeto.relacion}  ")
-
                 if (peso_mochila + objeto.peso <= limit) {
-                    this.peso_mochila = peso_mochila + objeto.peso
-                    this.valor_mochila=valor_mochila+objeto.valor
-                    this.cant_obj = cant_obj + 1
+                    peso_mochila = peso_mochila + objeto.peso
+                    valor_mochila=valor_mochila+objeto.valor
+                    cant_obj = cant_obj + 1
                     this.objetos.add(objeto)
                 }
-
-
-
             }
+            println("el peso final de la mochila es ${peso_mochila} con un valor de ${valor_mochila}")    }}
+
         }
-
-    }
-
-}
 
 class cifrado: Serializable {
     fun main(){

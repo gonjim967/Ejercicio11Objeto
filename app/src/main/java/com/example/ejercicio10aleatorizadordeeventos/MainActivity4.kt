@@ -79,4 +79,8 @@ class MainActivity4 : AppCompatActivity() {
 
         return numDado
     }
+
+    companion object personaje{
+        var p = Personaje()
+    }
 }
